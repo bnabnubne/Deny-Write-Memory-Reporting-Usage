@@ -45,4 +45,7 @@ bool readdir (int fd, char name[READDIR_MAX_LEN + 1]);
 bool isdir (int fd);
 int inumber (int fd);
 
+void report_memory_usage(void);
+
+
 #endif /* lib/user/syscall.h */

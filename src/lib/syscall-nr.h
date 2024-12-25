@@ -1,5 +1,6 @@
 #ifndef __LIB_SYSCALL_NR_H
 #define __LIB_SYSCALL_NR_H
+#define SYS_REPORT_MEMORY 20
 
 /* System call numbers. */
 enum 

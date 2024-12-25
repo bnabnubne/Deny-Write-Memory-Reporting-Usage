@@ -100,6 +100,7 @@ main (void)
 
   /* Initialize memory system. */
   palloc_init (user_page_limit);
+  report_memory_usage();
   malloc_init ();
   paging_init ();
 

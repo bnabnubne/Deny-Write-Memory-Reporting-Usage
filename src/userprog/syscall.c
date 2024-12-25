@@ -32,6 +32,8 @@ static int sys_close (int handle);
 static void syscall_handler (struct intr_frame *);
 static void copy_in (void *, const void *, size_t);
 
+static int sys_report_memory(void);
+
 static struct lock fs_lock;
 
 void
@@ -70,6 +72,7 @@ syscall_handler (struct intr_frame *f)
       {2, (syscall_function *) sys_seek},
       {1, (syscall_function *) sys_tell},
       {1, (syscall_function *) sys_close},
+      {0, (syscall_function *) sys_report_memory},
     };
 
   const struct syscall *sc;
@@ -486,3 +489,9 @@ syscall_exit (void)
       next = list_next (e);
     }
 }
+static int sys_report_memory(void) {
+    printf("Memory usage: %zu bytes\n", palloc_get_total_pages() * PGSIZE);
+    printf("Free memory: %zu bytes\n", palloc_get_free_pages() * PGSIZE);
+    return 0; // Indicate success
+}
+
